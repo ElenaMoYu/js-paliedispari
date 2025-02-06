@@ -14,20 +14,30 @@ console.log(isPalindrome(insert));
 // Chiedere all’utente di inserire una parola
 // Creare una funzione per capire se la parola inserita è palindroma
 
-const pickEvenOrOdd = prompt("Let's play a game: even or odd?");
-const pickNumber = prompt("Ok, now insert a number").number;
+const pickEvenOrOdd = Number(
+  prompt("Let's play a game: even (insert 2) or odd (insert 1)?")
+);
+const pickNumber = Number(prompt("Ok, now insert a number"));
 
 function generateNumber(max) {
   return Math.floor(Math.random() * max);
 }
 
-console.log(generateNumber(6));
+function isEven(number) {
+  return number % 2 === 0;
+}
 
-function SumNumbers(number) {}
+const sumNumbers = generateNumber(6) + pickNumber;
 
-// Expected output: 0, 1 or 2
-
-// Pari e Dispari
-// L’utente sceglie pari o dispari e inserisce un numero da 1 a 5. Generiamo un numero random (sempre da 1 a 5) per il computer (usando una funzione).
-// Sommiamo i due numeri
-// Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione) Dichiariamo chi ha vinto.
+if (isNaN(pickNumber)) {
+  console.log("Please insert a valid number");
+} else if (pickEvenOrOdd !== 1 && pickEvenOrOdd !== 2) {
+  console.log("Please insert 1 for odd or 2 for even");
+} else if (
+  (pickEvenOrOdd === 2 && isEven(sumNumbers)) ||
+  (pickEvenOrOdd === 1 && !isEven(sumNumbers))
+) {
+  console.log("You won");
+} else {
+  console.log("You lost, you poor human");
+}
